@@ -4,7 +4,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 model = AutoModelForCausalLM.from_pretrained("cyberagent/open-calm-small", device_map="auto", torch_dtype=torch.float16)
 tokenizer = AutoTokenizer.from_pretrained("cyberagent/open-calm-small")
 
-inputs = tokenizer("「a」を含む文を教えてください。その文を[]の中に入れてください。", return_tensors="pt").to(model.device)
+inputs = tokenizer("文字「a」を含む文を教えてください。その文全体を [] に入れてください。", return_tensors="pt").to(model.device)
 with torch.no_grad():
     tokens = model.generate(
         **inputs,
